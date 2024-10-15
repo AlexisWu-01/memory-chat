@@ -1,0 +1,70 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Memory</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #chat-container { border: 1px solid #ccc; padding: 20px; height: 400px; overflow-y: scroll; margin-bottom: 20px; }
+        #user-input { width: 100%; padding: 10px; margin-bottom: 10px; }
+        #send-button { padding: 10px 20px; }
+        .user-message { color: blue; }
+        .assistant-message { color: green; }
+        .memory-used { color: gray; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h1>Chat with Memory</h1>
+    <div id="chat-container">
+        {% for turn in conversation %}
+            <p class="user-message"><strong>User:</strong> {{ turn.user }}</p>
+            <p class="assistant-message"><strong>Assistant:</strong> {{ turn.assistant }}</p>
+            {% if turn.memory %}
+                <p class="memory-used"><strong>Memory used:</strong> {{ turn.memory|join(', ') }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button id="send-button">Send</button>
+    <a href="{{ url_for('memory') }}">View/Edit Memory</a>
+
+    <script>
+        $(document).ready(function() {
+            function addMessage(sender, message, memory) {
+                var messageHtml = '<p class="' + sender + '-message"><strong>' + sender + ':</strong> ' + message + '</p>';
+                if (memory) {
+                    messageHtml += '<p class="memory-used"><strong>Memory used:</strong> ' + memory.join(', ') + '</p>';
+                }
+                $('#chat-container').append(messageHtml);
+                $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
+            }
+
+            $('#send-button').click(function() {
+                var userInput = $('#user-input').val();
+                if (userInput.trim() !== '') {
+                    addMessage('User', userInput);
+                    $.ajax({
+                        url: '/',
+                        method: 'POST',
+                        data: { user_input: userInput },
+                        success: function(response) {
+                            addMessage('Assistant', response.response, response.memory);
+                        }
+                    });
+                    $('#user-input').val('');
+                }
+            });
+
+            $('#user-input').keypress(function(e) {
+                if (e.which == 13) {
+                    $('#send-button').click();
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
