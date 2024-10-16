@@ -13,12 +13,16 @@ This web application allows users to engage in a conversation with an AI assista
 ## Demo
 
 ![Chat with Memory Demo](https://github.com/AlexisWu-01/memory-chat/blob/main/demo/Screenshot.png)
-
-To see a short video to see this in action: https://github.com/user-attachments/assets/2a4de4ce-d73e-4903-a114-dfeae129b4c1
-https://youtu.be/xJviodVrxZk
-
-
 *Screenshot: An example conversation with the AI assistant, showcasing the chat interface and memory usage.*
+
+To see a short demo video (or watch it on [Youtube](https://youtu.be/xJviodVrxZk)):
+
+https://github.com/user-attachments/assets/fe9496cb-9635-4b7e-963c-fd66a3a562d5
+
+
+
+
+
 
 ## How to Use
 
