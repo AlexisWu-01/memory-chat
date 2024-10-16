@@ -12,7 +12,7 @@ This web application allows users to engage in a conversation with an AI assista
 
 ## Demo
 
-![Chat with Memory Demo](https://github.com/AlexisWu-01/memory-chat/main/demo/Screenshot.png)
+![Chat with Memory Demo](https://github.com/AlexisWu-01/memory-chat/blob/main/demo/Screenshot.png)
 
 *Screenshot: An example conversation with the AI assistant, showcasing the chat interface and memory usage.*
 
