@@ -4,11 +4,17 @@ This web application allows users to engage in a conversation with an AI assista
 
 ## Features
 
-1. **Chat Interface**: Engage in real-time conversations with the AI assistant.
+1. **Interactive Chat Interface**: Engage in real-time conversations with the AI assistant through a user-friendly chat box.
 2. **Memory System**: The application maintains a memory of user information and preferences.
 3. **Semantic Search**: Utilizes semantic search to retrieve relevant facts from memory for each conversation turn.
 4. **Editable Memory**: Users can view and edit their memory directly through the interface.
 5. **Conversation History**: The application keeps track of recent conversation turns for context.
+
+## Demo
+
+![Chat with Memory Demo](https://github.com/AlexisWu-01/memory-chat/main/demo/Screenshot.png)
+
+*Screenshot: An example conversation with the AI assistant, showcasing the chat interface and memory usage.*
 
 ## How to Use
 
@@ -31,23 +37,16 @@ This web application allows users to engage in a conversation with an AI assista
 
 ### Using the Chat Interface
 
-1. The main page displays the chat interface.
-2. Type your message in the input box at the bottom of the page.
-3. Press "Send" or hit Enter to send your message.
-4. The AI assistant will respond, taking into account your message and relevant information from your memory.
-5. The conversation history and used memory facts are displayed in the chat window.
-
-### Viewing and Editing Memory
-
-1. Click on the "View/Edit Memory" link at the bottom of the chat page.
-2. You'll be taken to a page where you can view all the facts in your memory.
-3. Edit the text in the textarea to modify your memory.
-4. Click "Save Memory" to update your memory with the changes.
+1. The main page displays the chat interface with a message input box at the bottom.
+2. Type your message in the input box and press "Send" or hit Enter to send your message.
+3. The AI assistant will respond, taking into account your message and relevant information from your memory.
+4. The conversation history, used memory facts, and newly learned facts are displayed in the chat window.
+5. To view or edit your memory, click on the "View/Edit Memory" link at the bottom of the chat page.
 
 ## Key Components
 
-- **Chat Template**: The main chat interface is defined in `templates/chat.html`.
-- **Memory Template**: The memory editing interface is defined in `templates/memory.html`.
+- **Chat Interface**: The main chat interface is defined in `templates/chat.html`.
+- **Memory Interface**: The memory editing interface is defined in `templates/memory.html`.
 - **Flask Application**: The main application logic is in `app.py`.
 - **Memory Management**: User memory and conversation history are managed in `memory_data.py`.
 - **Semantic Search**: Relevant fact retrieval is handled by `semantic_search.py`.
@@ -59,4 +58,3 @@ This web application allows users to engage in a conversation with an AI assista
 - The semantic search functionality uses the 'all-MiniLM-L6-v2' model for embedding generation.
 
 Enjoy chatting with your personalized AI assistant!
-
