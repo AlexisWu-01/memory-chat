@@ -14,6 +14,10 @@ This web application allows users to engage in a conversation with an AI assista
 
 ![Chat with Memory Demo](https://github.com/AlexisWu-01/memory-chat/blob/main/demo/Screenshot.png)
 
+To see a short video to see this in action: https://github.com/user-attachments/assets/2a4de4ce-d73e-4903-a114-dfeae129b4c1
+https://youtu.be/xJviodVrxZk
+
+
 *Screenshot: An example conversation with the AI assistant, showcasing the chat interface and memory usage.*
 
 ## How to Use
@@ -34,6 +38,9 @@ This web application allows users to engage in a conversation with an AI assista
    python app.py
    ```
 2. Open your web browser and navigate to `http://localhost:5000`.
+
+
+
 
 ### Using the Chat Interface
 
