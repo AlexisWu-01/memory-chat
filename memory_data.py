@@ -1,9 +1,5 @@
-# memory_data.py
 import random
-from openai import OpenAI
-from api_key import openai_api_key
 
-client = OpenAI(api_key=openai_api_key)
 
 def generate_synthetic_memory():
     # Define categories and their possible values
@@ -11,7 +7,7 @@ def generate_synthetic_memory():
         'hobbies': ['reading', 'swimming', 'painting', 'coding', 'hiking', 'gaming', 'gardening', 'photography', 'cooking', 'dancing'],
         'foods': ['pizza', 'sushi', 'pasta', 'salad', 'steak', 'tacos', 'burgers', 'ramen', 'ice cream', 'chocolate'],
         'places': ['New York', 'Paris', 'Tokyo', 'Sydney', 'Berlin', 'Rome', 'Toronto', 'Barcelona', 'Singapore', 'Dubai'],
-        'colors': ['blue', 'red', 'green', 'yellow', 'purple', 'black', 'white', 'orange', 'pink', 'gray'],
+        'colors': ['red', 'green', 'yellow', 'purple', 'black', 'white', 'orange', 'pink', 'gray'],
         'pets': ['dog', 'cat', 'hamster', 'parrot', 'fish', 'rabbit', 'turtle', 'snake', 'lizard', 'guinea pig'],
         'sports': ['soccer', 'basketball', 'tennis', 'baseball', 'running', 'cycling', 'skiing', 'surfing', 'boxing', 'volleyball'],
         'music_genres': ['rock', 'jazz', 'classical', 'pop', 'hip-hop', 'electronic', 'country', 'blues', 'reggae', 'metal'],
@@ -61,50 +57,17 @@ def generate_synthetic_memory():
 
 user_memory = generate_synthetic_memory()
 
-# Add this function to the existing memory_data.py file
-
-def update_memory(user_input, memory, max_memory=100):
-    new_facts = extract_facts(user_input)
-    memory.extend(new_facts)
-    
-    if len(memory) > max_memory:
-        memory = memory[-max_memory:]
-    
-    return memory
-
-def extract_facts(user_input):
-    prompt = f"""
-    Extract important facts about the user only from the following conversation:
-    User: {user_input}
-
-    Please list the extracted facts, one per line, in the format (can be more than or less than 3 based on the conversation):
-    - Fact 1
-    - Fact 2
-    - Fact 3
-    """
-
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant that extracts important facts from conversations."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=150
-    )
-
-    extracted_facts = response.choices[0].message.content.strip().split('\n')
-    return [fact.strip('- ') for fact in extracted_facts if fact.strip()]
-
-# Initialize conversation history
 conversation_history = []
 
-def update_conversation_history(user_input, assistant_response, relevant_facts, max_history=5):
+def update_conversation_history(user_input, assistant_response, memory_used, new_facts, max_history=10):
     global conversation_history
     conversation_history.append({
         'user': user_input,
         'assistant': assistant_response,
-        'memory': relevant_facts
+        'memory': memory_used,
+        'new_facts': new_facts
     })
-    
+
+    # Maintain a limited conversation history
     if len(conversation_history) > max_history:
         conversation_history = conversation_history[-max_history:]
